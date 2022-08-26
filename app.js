@@ -1,10 +1,10 @@
 // ****** SELECT ITEMS **********
 const alert = document.querySelector(".alert")
-const form = document.querySelector(".grocery-form")
-const grocery = document.querySelector("#grocery")
+const form = document.querySelector(".todo-form")
+const todo = document.querySelector("#moods")
 const submitBtn = document.querySelector(".submit-btn")
-const container = document.querySelector(".grocery-container")
-const list = document.querySelector(".grocery-list")
+const container = document.querySelector(".list-container")
+const list = document.querySelector(".todo-list")
 const clearBtn = document.querySelector(".clear-btn")
 
 // editing
@@ -16,11 +16,11 @@ clearBtn.addEventListener("click", clearItem)
     // ****** FUNCTIONS **********
 function addItem(e) {
     e.preventDefault()
-    const value = grocery.value
+    const value = todo.value
     if (value !== "") {
 
         const element = document.createElement("article")
-        element.classList.add("grocery-item")
+        element.classList.add("todo-item")
 
         element.innerHTML = `<p class="title">${value}</p>
         <div class="btn-container">
@@ -32,14 +32,14 @@ function addItem(e) {
         deleteBtn.addEventListener("click", deleteItem)
             // show the item 
         container.classList.add("show-container")
-            // append in grocery list 
+            // append in todo list 
         list.appendChild(element)
             // call display alert
-        displayAlert("Saved", "success")
+        displayAlert("Added to the LISt.", "success")
 
         setBackToDefault()
     } else {
-        displayAlert("empty value", "danger")
+        displayAlert("Please type something!", "danger")
     }
 }
 // display alert function'
@@ -55,12 +55,12 @@ function displayAlert(text, nature) {
 
 // sets everything back to default
 function setBackToDefault() {
-    grocery.value = ""
+    todo.value = ""
 }
 
 // clear all the iteams
 function clearItem() {
-    const items = document.querySelectorAll(".grocery-item")
+    const items = document.querySelectorAll(".todo-item")
 
     if (items.length > 0) {
         items.forEach(function(item) {
@@ -80,5 +80,5 @@ function deleteItem(e) {
     if (list.children.length === 0) {
         container.classList.remove("show-container")
     }
-    displayAlert("Stuff removed", "danger")
+    displayAlert("Okay, removed!", "danger")
 }
